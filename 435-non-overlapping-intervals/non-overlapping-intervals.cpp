@@ -8,12 +8,12 @@ public:
         });
 
         int cnt = 1;
-        int freeTime = intervals[0][1];
+        int end= intervals[0][1];
 
         for(int i = 1; i < n; i++) {
-            if(intervals[i][0] >= freeTime) {
+            if(intervals[i][0] >= end) {
                 cnt++;
-                freeTime = intervals[i][1];
+                end = intervals[i][1];
             }
         }
 
