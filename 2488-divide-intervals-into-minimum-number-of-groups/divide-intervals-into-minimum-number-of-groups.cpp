@@ -12,13 +12,14 @@ public:
         while(i<start.size()){
             if(start[i]<=end[j]){
                 cnt+=1;
-                maxcnt=max(cnt, maxcnt);
+                
                 i+=1;
             }
             else{
                 cnt-=1;
                 j+=1;
             }
+            maxcnt=max(cnt, maxcnt);
             
         }
         return maxcnt;
