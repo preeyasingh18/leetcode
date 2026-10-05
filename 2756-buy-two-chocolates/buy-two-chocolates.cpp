@@ -14,7 +14,7 @@ public:
         }
 
         if(first + second <= money)
-            return money - first - second;
+            return money - (first + second);
 
         return money;
     }
