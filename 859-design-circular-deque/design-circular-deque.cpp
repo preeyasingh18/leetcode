@@ -5,7 +5,7 @@ public:
     MyCircularDeque(int k) {
         arr.resize(k);
         front = 0;
-        rear = -1;
+        rear = 0;
         capacity = k;
         count = 0;
     }
