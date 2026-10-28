@@ -1,23 +1,33 @@
 class Solution {
 public:
     int maxSubarraySumCircular(vector<int>& nums) {
-        int total = 0;
-        int currMax = 0, maxSum = INT_MIN;
-        int currMin = 0, minSum = INT_MAX;
+        int n = nums.size();
+        vector<int> pref(2 * n + 1, 0);
 
-        for (int x : nums) {
-            currMax = max(x, currMax + x);
-            maxSum = max(maxSum, currMax);
-
-            currMin = min(x, currMin + x);
-            minSum = min(minSum, currMin);
-
-            total += x;
+        for (int i = 0; i < 2 * n; i++) {
+            pref[i + 1] = pref[i] + nums[i % n];
         }
 
-        if (maxSum < 0)
-            return maxSum;
+        deque<int> dq;
+        int maxi = INT_MIN;
 
-        return max(maxSum, total - minSum);
+        for (int end = 1; end < 2 * n; end++) {
+            int start = end - 1;
+
+            if (start < n) {
+                while (!dq.empty() && pref[dq.back()] >= pref[start])
+                    dq.pop_back();
+
+                dq.push_back(start);
+            }
+
+            while (!dq.empty() && dq.front() < end - n)
+                dq.pop_front();
+
+            if (!dq.empty())
+                maxi = max(maxi, pref[end] - pref[dq.front()]);
+        }
+
+        return maxi;
     }
 };
