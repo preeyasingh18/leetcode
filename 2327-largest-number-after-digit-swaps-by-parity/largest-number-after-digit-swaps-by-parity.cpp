@@ -10,7 +10,6 @@ public:
 
             }
         }
-        int result = stoi(s);
-        return result;
+        return stoi(s);
     }
 };
