@@ -1,26 +1,12 @@
 class Solution {
 public:
     int minimumOperations(vector<int>& nums) {
-        int op=0;
+        set<int> st;
 
-        priority_queue<int> pq;
-
-        for(int i=0; i<nums.size(); i++){
-            if(nums[i]>0)pq.push(nums[i]);
+        for(int num : nums) {
+            if(num > 0) st.insert(num);
         }
 
-        while(!pq.empty()) {
-            int top = pq.top();
-            pq.pop();
-
-            while(!pq.empty() && pq.top() == top) {
-                pq.pop();
-            }
-
-            op++;
-        }
-        return op;
-            
-        
+        return st.size();
     }
 };
