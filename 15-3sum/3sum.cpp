@@ -1,50 +1,30 @@
 class Solution {
 public:
-    vector<vector<int>> result;
-
-    void twoSum(vector<int>& nums, int target, int i, int j) {
-        while (i < j) {
-            if (nums[i] + nums[j] > target) {
-                j--;
-            }
-            else if (nums[i] + nums[j] < target) {
-                i++;
-            }
-            else {
-                while (i < j && nums[i] == nums[i + 1])
-                    i++;
-
-                while (i < j && nums[j] == nums[j - 1])
-                    j--;
-
-                result.push_back({-target, nums[i], nums[j]});
-
-                i++;
-                j--;
-            }
-        }
-    }
     vector<vector<int>> threeSum(vector<int>& nums) {
-        int n = nums.size();
-
-        if (n < 3) {
-            return {};
-        }
-
-        result.clear();
         sort(nums.begin(), nums.end());
+        vector<vector<int>> ans;
 
-        for (int i = 0; i < n; i++) {
-            if (i > 0 && nums[i] == nums[i - 1]) {
+        for(int i = 0; i < nums.size()-2; i++) {
+            if(i > 0 && nums[i] == nums[i-1])
                 continue;
+
+            int j = i+1, k = nums.size()-1;
+
+            while(j < k) {
+                int sum = nums[i] + nums[j] + nums[k];
+
+                if(sum == 0) {
+                    ans.push_back({nums[i], nums[j], nums[k]});
+                    j++;
+                    k--;
+
+                    while(j < k && nums[j] == nums[j-1]) j++;
+                    while(j < k && nums[k] == nums[k+1]) k--;
+                }
+                else if(sum < 0) j++;
+                else k--;
             }
-
-            int n1 = nums[i];
-            int target = -n1;
-
-            twoSum(nums, target, i + 1, n - 1);
         }
-
-        return result;
+        return ans;
     }
 };
