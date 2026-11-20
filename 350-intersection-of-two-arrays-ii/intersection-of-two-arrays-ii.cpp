@@ -15,9 +15,8 @@ public:
                 i++;
             }
             else{
-                if(ans.empty() || nums1[i]==nums2[j]){
-                    ans.push_back(nums1[i]);
-                }
+                ans.push_back(nums1[i]);
+                
                 i++;
                 j++;
             }
