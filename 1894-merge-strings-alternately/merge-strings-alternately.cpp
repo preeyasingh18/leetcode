@@ -6,10 +6,12 @@ public:
 
         while (i < word1.size() || j < word2.size()) {
             if (i < word1.size()) {
-                ans += word1[i++];
+                ans += word1[i];
+                i++;
             }
             if (j < word2.size()) {
-                ans += word2[j++];
+                ans += word2[j];
+                j++;
             }
         }
         return ans;
