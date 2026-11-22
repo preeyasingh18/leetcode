@@ -13,7 +13,6 @@ public:
                 j++;
             }
 
-            // Find the beginning of the group
             int l=i;
 
             while (l>0 && nums[l - 1]==nums[i]) {
